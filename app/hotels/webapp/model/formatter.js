@@ -8,11 +8,12 @@ sap.ui.define([], function () {
          */
        currency: function (vValue) {
     if (vValue === undefined || vValue === null || vValue === "") return "";
-    const n = Number(vValue);
+    const cleaned = typeof vValue === "string" ? vValue.replace(/,/g, "") : vValue;
+    const n = typeof cleaned === "string" ? parseFloat(cleaned) : Number(cleaned);
     if (isNaN(n)) return "";
     return "₹" + n.toLocaleString("en-IN", {
         minimumFractionDigits: 0,
-        maximumFractionDigits: 2
+        maximumFractionDigits: 0
     });
 },
 

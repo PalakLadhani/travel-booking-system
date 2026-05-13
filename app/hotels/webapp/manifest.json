@@ -89,46 +89,55 @@
         "transition": "slide",
         "async": true
       },
-      "routes": [
-        {
-          "name": "hotels",
-          "pattern": ":?query:",
-          "target": "TargetHotelsList"
-        },
-        {
-          "name": "hotelDetail",
-          "pattern": "hotels/{hotelId}",
-          "target": "TargetHotelDetail"
-        },
-        {
-          "name": "chat",
-          "pattern": "chat:?query:",
-          "target": "TargetChat"
-        },
-        {
-          "name": "bookings",
-          "pattern": "bookings",
-          "target": "TargetBookings"
-        }
-      ],
-      "targets": {
-        "TargetHotelsList": {
-          "viewId": "HotelsList",
-          "viewName": "HotelsList"
-        },
-        "TargetHotelDetail": {
-          "viewId": "HotelDetail",
-          "viewName": "HotelDetail"
-        },
-        "TargetChat": {
-          "viewId": "Chat",
-          "viewName": "Chat"
-        },
-        "TargetBookings": {
-          "viewId": "Bookings",
-          "viewName": "Bookings"
-        }
-      }
+   "routes": [
+    {
+        "name": "home",
+        "pattern": ":?query:",
+        "target": "TargetHome"
+    },
+    {
+        "name": "hotels",
+        "pattern": "hotels",
+        "target": "TargetHotelsList"
+    },
+    {
+        "name": "hotelDetail",
+        "pattern": "hotels/{hotelId}",
+        "target": "TargetHotelDetail"
+    },
+    {
+        "name": "chat",
+        "pattern": "chat:?query:",
+        "target": "TargetChat"
+    },
+    {
+        "name": "bookings",
+        "pattern": "bookings",
+        "target": "TargetBookings"
+    }
+],
+     "targets": {
+    "TargetHome": {
+        "viewId": "Home",
+        "viewName": "Home"
+    },
+    "TargetHotelsList": {
+        "viewId": "HotelsList",
+        "viewName": "HotelsList"
+    },
+    "TargetHotelDetail": {
+        "viewId": "HotelDetail",
+        "viewName": "HotelDetail"
+    },
+    "TargetChat": {
+        "viewId": "Chat",
+        "viewName": "Chat"
+    },
+    "TargetBookings": {
+        "viewId": "Bookings",
+        "viewName": "Bookings"
+    }
+}
     },
     "rootView": {
       "viewName": "travel.hotels.hotels.view.App",

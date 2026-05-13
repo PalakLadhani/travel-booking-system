@@ -1,0 +1,118 @@
+<mvc:View
+    controllerName="travel.hotels.hotels.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+
+    <Page id="page" showHeader="false" backgroundDesign="Solid" class="travelHomePage">
+
+        <content>
+
+            <!-- ===== HERO SECTION ===== -->
+            <VBox class="heroChatSection" alignItems="Center" justifyContent="Center">
+                <VBox class="heroChatContent" alignItems="Center">
+
+                    <Title text="Plan Your Perfect Trip with AI" level="H1" class="heroChatTitle"/>
+
+                    <Text
+                        text="Tell me where you want to go, and I'll handle the rest — travel, hotel, everything."
+                        class="heroChatSubtitle"/>
+
+                    <Panel class="heroChatPanel" backgroundDesign="Solid">
+                        <content>
+                            <HBox alignItems="Center" class="heroChatInputRow">
+                                <core:Icon src="sap-icon://message-popup" class="heroChatIcon"/>
+                                <Input
+                                    id="heroChatInput"
+                                    width="100%"
+                                    placeholder="e.g. 'I want to go to Shimla from Delhi next month'"
+                                    submit=".onHeroChatSubmit"
+                                    class="heroChatInput"/>
+                                <Button
+                                    icon="sap-icon://paper-plane"
+                                    type="Emphasized"
+                                    press=".onHeroChatSubmit"
+                                    class="heroChatSendButton"/>
+                            </HBox>
+                        </content>
+                    </Panel>
+
+                    <!-- Quick example prompts -->
+                    <HBox class="heroExamples" wrap="Wrap" justifyContent="Center">
+                        <Button text="Trip to Goa" type="Transparent" press=".onExamplePress"
+                                customData:prompt="I want to plan a trip to Goa from Mumbai"/>
+                        <Button text="Weekend in Shimla" type="Transparent" press=".onExamplePress"
+                                customData:prompt="Plan a weekend getaway to Shimla from Delhi"/>
+                        <Button text="Beach holiday" type="Transparent" press=".onExamplePress"
+                                customData:prompt="I want a beach holiday in India"/>
+                    </HBox>
+
+                </VBox>
+            </VBox>
+
+            <!-- ===== FEATURED DESTINATIONS ===== -->
+            <VBox class="featuredSection" alignItems="Center">
+
+                <VBox class="featuredHeader" alignItems="Center">
+                    <Title text="Popular Destinations" level="H2" class="sectionTitle"/>
+                    <Text text="Handpicked destinations across India" class="sectionSubtitle"/>
+                </VBox>
+
+                <FlexBox
+                    class="featuredCardsContainer"
+                    wrap="Wrap"
+                    justifyContent="Start"
+                    items="{
+                        path: '/Destinations',
+                        filters: [{ path: 'isFeatured', operator: 'EQ', value1: true }]
+                    }">
+
+                    <VBox class="featuredCard">
+                        <Image src="{imageUrl}" class="featuredCardImage" densityAware="false"/>
+                        <VBox class="featuredCardContent">
+                            <Title text="{name}" level="H3" class="featuredCardTitle"/>
+                            <Text text="{state}, {country}" class="featuredCardLocation"/>
+                            <Text text="{description}" maxLines="2" class="featuredCardDescription"/>
+                            <HBox class="featuredCardFooter" alignItems="Center" justifyContent="SpaceBetween">
+                                <VBox>
+                                    <Text text="Avg hotel from" class="priceLabel"/>
+                                    <Title
+                                        text="{
+                                            path: 'averageHotelPrice',
+                                            formatter: '.formatter.currency'
+                                        }"
+                                        level="H4"
+                                        class="featuredCardPrice"/>
+                                </VBox>
+                                <Button
+                                    text="Plan Trip"
+                                    icon="sap-icon://message-popup"
+                                    type="Emphasized"
+                                    press=".onDestinationPress"
+                                    class="featuredPlanButton"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                </FlexBox>
+
+            </VBox>
+
+            <!-- ===== BROWSE HOTELS LINK ===== -->
+            <VBox class="browseHotelsSection" alignItems="Center">
+                <Title text="Looking for something specific?" level="H3" class="browseHotelsTitle"/>
+                <Text text="Browse our full hotel catalog directly" class="browseHotelsSubtitle"/>
+                <Button
+                    text="Browse All Hotels"
+                    icon="sap-icon://hotel"
+                    type="Default"
+                    press=".onBrowseHotels"
+                    class="browseHotelsButton"/>
+            </VBox>
+
+        </content>
+    </Page>
+
+</mvc:View>
