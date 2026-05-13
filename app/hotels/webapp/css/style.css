@@ -1,0 +1,300 @@
+/* ============================================================
+   CONSUMER HOTEL BOOKING STYLES
+   ============================================================ */
+
+/* Global reset for our page */
+.hotelBookingPage .sapMPage > section {
+    padding: 0 !important;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.heroSection {
+    width: 100%;
+    height: 480px;
+    background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.65) 0%, rgba(30, 41, 59, 0.55) 100%),
+        url('https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1600') center/cover;
+    position: relative;
+}
+
+.heroContent {
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.heroTitle .sapMTitle,
+.heroTitle {
+    color: white !important;
+    font-size: 3rem !important;
+    font-weight: 700 !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    margin-bottom: 0.5rem;
+}
+
+.heroSubtitle {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 1.15rem !important;
+    margin-bottom: 2rem !important;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+/* Search box inside hero */
+.heroSearchPanel {
+    width: 90%;
+    max-width: 700px;
+    background: white !important;
+    border-radius: 12px !important;
+    padding: 0.5rem !important;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
+}
+
+.heroSearchPanel .sapMPanelContent {
+    padding: 0 !important;
+}
+
+.heroSearch input {
+    border: none !important;
+    font-size: 1rem !important;
+    padding: 0.75rem 1rem !important;
+}
+
+/* ============================================================
+   MAIN CONTENT LAYOUT
+   ============================================================ */
+.mainContent {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* ============================================================
+   FILTER SIDEBAR
+   ============================================================ */
+.filterSidebar {
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 1rem;
+}
+
+.filterPanel {
+    background: white !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+    padding: 1.5rem !important;
+}
+
+.filterPanel .sapMPanelHdr {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    padding-bottom: 0.75rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.filterLabel {
+    font-weight: 600 !important;
+    color: #475569 !important;
+    margin-top: 1.25rem !important;
+    margin-bottom: 0.5rem !important;
+    display: block;
+}
+
+.filterChips .sapMCb {
+    margin-bottom: 0.4rem !important;
+}
+
+.filterSlider {
+    margin: 0.5rem 0 !important;
+}
+
+.filterValueLabel {
+    color: #ea580c !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+}
+
+.filterRating {
+    margin-top: 0.5rem;
+}
+
+.clearFiltersButton {
+    margin-top: 1.5rem !important;
+    width: 100%;
+    color: #64748b !important;
+}
+
+/* ============================================================
+   RESULTS AREA
+   ============================================================ */
+.resultsArea {
+    flex: 1;
+    min-width: 0;
+}
+
+.resultsHeader {
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+}
+
+.resultsHeader .sapMTitle {
+    color: #1e293b !important;
+    font-weight: 700 !important;
+}
+
+.sortSelect {
+    width: 200px;
+}
+
+/* ============================================================
+   HOTEL CARDS
+   ============================================================ */
+.hotelCardsList .sapMListUl {
+    background: transparent !important;
+}
+
+.hotelCardItem {
+    margin-bottom: 1.5rem;
+    padding: 0 !important;
+}
+
+.hotelCardItem .sapMLIB-CTX,
+.hotelCardItem .sapMCLI {
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+.hotelCard {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: all 0.25s ease;
+    border: 1px solid #f1f5f9;
+    width: 100%;
+}
+
+.hotelCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    border-color: #fed7aa;
+}
+
+.hotelCardImage {
+    width: 280px !important;
+    height: 220px !important;
+    object-fit: cover !important;
+    flex-shrink: 0;
+}
+
+.hotelCardContent {
+    flex: 1;
+    padding: 1.5rem;
+    justify-content: space-between;
+    min-width: 0;
+}
+
+.hotelCardTitle {
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.hotelCardLocation {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.locationIcon {
+    color: #ea580c !important;
+}
+
+.hotelCardLocation .sapMText {
+    color: #64748b !important;
+}
+
+.hotelCardDescription {
+    color: #475569 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+    margin: 0.75rem 0 1rem 0 !important;
+}
+
+.ratingText {
+    color: #f59e0b !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    margin-top: 0.25rem;
+}
+
+.hotelCardFooter {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 1rem;
+    margin-top: auto;
+}
+
+.priceLabel {
+    color: #94a3b8 !important;
+    font-size: 0.75rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.hotelCardPrice {
+    color: #ea580c !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    margin: 0.1rem 0 !important;
+}
+
+.detailsButton {
+    color: #475569 !important;
+    margin-right: 0.5rem !important;
+}
+
+.bookButton {
+    background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    padding: 0 1.25rem !important;
+    height: 2.5rem !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+    transition: all 0.2s ease;
+}
+
+.bookButton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(234, 88, 12, 0.4);
+}
+
+/* ============================================================
+   RESPONSIVE: STACK ON MOBILE
+   ============================================================ */
+@media (max-width: 900px) {
+    .filterSidebar {
+        width: 100%;
+        position: static;
+    }
+    .hotelCard {
+        flex-direction: column !important;
+    }
+    .hotelCardImage {
+        width: 100% !important;
+        height: 200px !important;
+    }
+    .heroTitle .sapMTitle {
+        font-size: 2rem !important;
+    }
+}

@@ -1,0 +1,186 @@
+<mvc:View
+    controllerName="travel.hotels.hotels.controller.HotelsList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:l="sap.ui.layout"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+
+    <App id="app">
+        <pages>
+            <Page
+                id="page"
+                showHeader="false"
+                backgroundDesign="Solid"
+                class="hotelBookingPage">
+
+                <content>
+
+                    <!-- ============ HERO SECTION ============ -->
+                    <VBox class="heroSection" alignItems="Center" justifyContent="Center">
+                        <VBox class="heroContent" alignItems="Center">
+                            <Title
+                                text="Find Your Perfect Stay"
+                                level="H1"
+                                class="heroTitle"/>
+                            <Text
+                                text="Discover handpicked hotels across India, booked with AI assistance"
+                                class="heroSubtitle"/>
+
+                            <Panel class="heroSearchPanel" backgroundDesign="Solid">
+                                <SearchField
+                                    id="searchField"
+                                    width="100%"
+                                    placeholder="Where do you want to go? (try 'Goa' or 'palace')"
+                                    search=".onSearch"
+                                    liveChange=".onSearch"
+                                    class="heroSearch"/>
+                            </Panel>
+                        </VBox>
+                    </VBox>
+
+                    <!-- ============ MAIN CONTENT ============ -->
+                    <FlexBox direction="Row" class="mainContent" wrap="Wrap">
+
+                        <!-- LEFT: Filter Sidebar -->
+                        <VBox class="filterSidebar">
+                            <Panel headerText="Filter Hotels" class="filterPanel" expandable="false">
+                                <content>
+
+                                    <Label text="City" class="filterLabel"/>
+                                    <VBox class="filterChips">
+                                        <CheckBox text="Goa"     select=".onCityFilter" customData:city="Goa"/>
+                                        <CheckBox text="Manali"  select=".onCityFilter" customData:city="Manali"/>
+                                        <CheckBox text="Mumbai"  select=".onCityFilter" customData:city="Mumbai"/>
+                                        <CheckBox text="Jaipur"  select=".onCityFilter" customData:city="Jaipur"/>
+                                        <CheckBox text="Alleppey" select=".onCityFilter" customData:city="Alleppey"/>
+                                    </VBox>
+
+                                    <Label text="Maximum Price per Night" class="filterLabel"/>
+                                    <Slider
+                                        id="priceSlider"
+                                        min="1000"
+                                        max="10000"
+                                        step="500"
+                                        value="10000"
+                                        enableTickmarks="false"
+                                        showAdvancedTooltip="true"
+                                        change=".onPriceFilter"
+                                        class="filterSlider"/>
+                                    <Text id="priceLabel" text="Up to ₹10,000" class="filterValueLabel"/>
+
+                                    <Label text="Minimum Rating" class="filterLabel"/>
+                                    <RatingIndicator
+                                        id="ratingFilter"
+                                        maxValue="5"
+                                        value="0"
+                                        change=".onRatingFilter"
+                                        class="filterRating"/>
+
+                                    <Button
+                                        text="Clear Filters"
+                                        type="Transparent"
+                                        icon="sap-icon://clear-filter"
+                                        press=".onClearFilters"
+                                        class="clearFiltersButton"/>
+                                </content>
+                            </Panel>
+                        </VBox>
+
+                        <!-- RIGHT: Results -->
+                        <VBox class="resultsArea">
+
+                            <HBox class="resultsHeader" justifyContent="SpaceBetween" alignItems="Center">
+                                <Title text="{= ${hotelsList>/$count} + ' hotels found' }" level="H3"/>
+                                <Select id="sortSelect" change=".onSort" class="sortSelect">
+                                    <core:Item key="price_asc" text="Price: Low to High"/>
+                                    <core:Item key="price_desc" text="Price: High to Low"/>
+                                    <core:Item key="rating_desc" text="Rating: High to Low"/>
+                                    <core:Item key="name_asc" text="Name: A-Z"/>
+                                </Select>
+                            </HBox>
+
+                            <!-- Hotel cards grid -->
+                            <List
+                                id="hotelsList"
+                                items="{
+                                    path: '/Hotels',
+                                    parameters: { $count: true }
+                                }"
+                                showSeparators="None"
+                                class="hotelCardsList"
+                                noDataText="No hotels match your filters">
+
+                                <CustomListItem class="hotelCardItem">
+                                    <HBox class="hotelCard">
+
+                                        <!-- Hotel image -->
+                                        <Image
+                                            src="{imageUrl}"
+                                            class="hotelCardImage"
+                                            densityAware="false"/>
+
+                                        <!-- Hotel info -->
+                                        <VBox class="hotelCardContent">
+                                            <HBox justifyContent="SpaceBetween">
+                                                <VBox>
+                                                    <Title text="{name}" level="H4" class="hotelCardTitle"/>
+                                                    <HBox alignItems="Center" class="hotelCardLocation">
+                                                        <core:Icon src="sap-icon://map-2" size="0.85rem" class="locationIcon"/>
+                                                        <Text text=" {city}, {country}"/>
+                                                    </HBox>
+                                                </VBox>
+                                                <VBox alignItems="End">
+                                                    <RatingIndicator
+                                                        value="{rating}"
+                                                        maxValue="5"
+                                                        editable="false"
+                                                        displayOnly="true"
+                                                        iconSize="14px"/>
+                                                    <Text text="{rating} / 5" class="ratingText"/>
+                                                </VBox>
+                                            </HBox>
+
+                                            <Text text="{description}" class="hotelCardDescription" maxLines="2"/>
+
+                                            <HBox justifyContent="SpaceBetween" alignItems="End" class="hotelCardFooter">
+                                                <VBox>
+                                                    <Text text="Starting from" class="priceLabel"/>
+                                                    <Title
+                                                        text="{
+                                                            path: 'pricePerNight',
+                                                            formatter: '.formatter.currency'
+                                                        }"
+                                                        level="H3"
+                                                        class="hotelCardPrice"/>
+                                                    <Text text="per night" class="priceLabel"/>
+                                                </VBox>
+                                                <HBox>
+                                                    <Button
+                                                        text="View Details"
+                                                        type="Transparent"
+                                                        press=".onViewDetails"
+                                                        class="detailsButton"/>
+                                                    <Button
+                                                        text="Book Now"
+                                                        type="Emphasized"
+                                                        icon="sap-icon://message-popup"
+                                                        press=".onBookPress"
+                                                        class="bookButton"/>
+                                                </HBox>
+                                            </HBox>
+                                        </VBox>
+                                    </HBox>
+                                </CustomListItem>
+                            </List>
+                        </VBox>
+                    </FlexBox>
+
+                </content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>
