@@ -1,27 +1,35 @@
-using{travel} from '../db/schema';
-service TravelService @(path: '/travel'){
+using { travel } from '../db/schema';
 
-    @randonly
-    entity Hotels as projection on travel.Hotels;
-    entity Bookings as projection on travel.Bookings;
+service TravelService @(path: '/travel') {
 
-    //Actions for the LangGraph agent - wired up in Phase 4
-    action chatWithAgent(
-        threadId:String,
-        message:String
-    )returns{
-        threadId:String;
-        reply:String;
-        needsApproval:Boolean;
-        approvalData:String; //JSON-stringified payload
-    };
+  @readonly
+  entity Destinations as projection on travel.Destinations;
 
-    action approveBooking(
-        threadId:String,
-        decision:String //"approve" | "reject"
-    )
-    returns{
-        reply:String;
-        status:String;
-    };
+  @readonly
+  entity TravelOptions as projection on travel.TravelOptions;
+
+  @readonly
+  entity Hotels as projection on travel.Hotels;
+
+  entity Bookings as projection on travel.Bookings;
+
+  // ---- Agent actions ----
+
+  action chatWithAgent(
+    threadId : String,
+    message  : String
+  ) returns {
+    threadId      : String;
+    reply         : String;
+    needsApproval : Boolean;
+    approvalData  : String;
+  };
+
+  action approveBooking(
+    threadId : String,
+    decision : String   // "approve" | "reject"
+  ) returns {
+    reply  : String;
+    status : String;
+  };
 }

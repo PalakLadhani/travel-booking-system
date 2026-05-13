@@ -1,0 +1,18 @@
+<mvc:View
+    controllerName="travel.hotels.hotels.controller.HotelDetail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+
+    <Page id="page" title="Hotel Detail" showNavButton="true" navButtonPress=".onNavBack">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <Title text="Hotel Detail Page" level="H1"/>
+                <Text text="Placeholder — full detail page coming in Sub-phase 5.6"/>
+                <Text text="Hotel ID will load from URL"/>
+                <Text text="Bound hotel name: {name}"/>
+                <Text text="Bound hotel city: {city}"/>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

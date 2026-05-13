@@ -1,0 +1,15 @@
+<mvc:View
+    controllerName="travel.hotels.hotels.controller.Chat"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+
+    <Page id="page" title="Chat with AI Agent" showNavButton="true" navButtonPress=".onNavBack">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <Title text="Chat Page" level="H1"/>
+                <Text text="Placeholder — chat UI coming in Sub-phase 5.7"/>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

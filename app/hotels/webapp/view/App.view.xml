@@ -1,7 +1,11 @@
-<mvc:View controllerName="travel.hotels.hotels.controller.App"
-    displayBlock="true"
+<mvc:View
+    controllerName="travel.hotels.hotels.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <App id="app">
+    xmlns="sap.m"
+    displayBlock="true">
+
+    <App id="app" busy="{appView>/busy}" busyIndicatorDelay="0">
+        <!-- Router places child views (HotelsList, HotelDetail, Chat, Bookings) here -->
     </App>
+
 </mvc:View>

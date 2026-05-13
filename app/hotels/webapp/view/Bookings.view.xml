@@ -1,0 +1,15 @@
+<mvc:View
+    controllerName="travel.hotels.hotels.controller.Bookings"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+
+    <Page id="page" title="My Bookings" showNavButton="true" navButtonPress=".onNavBack">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <Title text="My Bookings" level="H1"/>
+                <Text text="Placeholder — bookings list coming in Sub-phase 5.10"/>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

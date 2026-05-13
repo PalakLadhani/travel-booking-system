@@ -102,11 +102,30 @@ module.exports = cds.service.impl(async function () {
   // Validation: Bookings checkOut must be after checkIn
   // Runs BEFORE CAP's auto-generated CREATE handler
   // ============================================================
-  this.before('CREATE', 'Bookings', async (req) => {
-    const { checkIn, checkOut } = req.data;
-    if (checkIn && checkOut && new Date(checkOut) <= new Date(checkIn)) {
-      req.error(400, 'checkOut must be after checkIn');
+ this.before('CREATE', 'Bookings', async (req) => {
+    const { bookingType, checkIn, checkOut, travelDate, travelOption_ID, hotel_ID } = req.data;
+
+    // Validate booking type
+    if (!bookingType || !['hotel', 'travel'].includes(bookingType)) {
+        return req.error(400, "bookingType must be 'hotel' or 'travel'");
     }
-  });
+
+    // Type-specific validation
+    if (bookingType === 'hotel') {
+        if (!hotel_ID) {
+            return req.error(400, 'hotel is required for hotel bookings');
+        }
+        if (checkIn && checkOut && new Date(checkOut) <= new Date(checkIn)) {
+            return req.error(400, 'checkOut must be after checkIn');
+        }
+    } else if (bookingType === 'travel') {
+        if (!travelOption_ID) {
+            return req.error(400, 'travelOption is required for travel bookings');
+        }
+        if (!travelDate) {
+            return req.error(400, 'travelDate is required for travel bookings');
+        }
+    }
+});
 
 });

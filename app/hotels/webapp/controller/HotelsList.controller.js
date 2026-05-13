@@ -152,16 +152,23 @@ sap.ui.define([
         // ============================================================
         // ACTIONS
         // ============================================================
-        onViewDetails: function (oEvent) {
-            const oContext = oEvent.getSource().getBindingContext();
-            const oHotel = oContext.getObject();
-            this.showToast(`Detail page coming for: ${oHotel.name}`);
-        },
+      /**
+ * Navigate to hotel detail page when user clicks the hotel name
+ * or the "View Details" button.
+ */
+onViewDetails: function (oEvent) {
+    const oContext = oEvent.getSource().getBindingContext();
+    const sHotelId = oContext.getProperty("ID");
+    this.navTo("hotelDetail", { hotelId: sHotelId });
+},
 
-        onBookPress: function (oEvent) {
-            const oContext = oEvent.getSource().getBindingContext();
-            const oHotel = oContext.getObject();
-            this.showToast(`Chat with agent coming for: ${oHotel.name}`);
-        }
+/**
+ * Navigate to chat page with the hotel pre-selected via query param.
+ */
+onBookPress: function (oEvent) {
+    const oContext = oEvent.getSource().getBindingContext();
+    const sHotelId = oContext.getProperty("ID");
+    this.navTo("chat", { "?query": { hotelId: sHotelId } });
+}
     });
 });
