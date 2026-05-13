@@ -2,14 +2,125 @@
     controllerName="travel.hotels.hotels.controller.Chat"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:core="sap.ui.core"
     displayBlock="true">
 
-    <Page id="page" title="Chat with AI Agent" showNavButton="true" navButtonPress=".onNavBack">
+    <Page id="page" showHeader="false" backgroundDesign="Solid" class="chatPage">
+
         <content>
-            <VBox class="sapUiMediumMargin">
-                <Title text="Chat Page" level="H1"/>
-                <Text text="Placeholder — chat UI coming in Sub-phase 5.7"/>
-            </VBox>
+
+            <!-- Top bar with back button + title -->
+            <HBox class="chatTopBar" alignItems="Center" justifyContent="SpaceBetween">
+                <HBox alignItems="Center" class="chatTopLeft">
+                    <Button
+                        icon="sap-icon://navigation-left-arrow"
+                        type="Transparent"
+                        press=".onNavBack"
+                        class="chatBackButton"/>
+                    <VBox class="chatTitleBox">
+                        <Title text="TravelAI" level="H3" class="chatHeaderTitle"/>
+                        <Text text="Your AI travel concierge" class="chatHeaderSubtitle"/>
+                    </VBox>
+                </HBox>
+                <Button
+                    text="My Bookings"
+                    icon="sap-icon://history"
+                    type="Transparent"
+                    press=".onNavBookings"
+                    class="chatBookingsButton"/>
+            </HBox>
+
+            <!-- Messages scroll area -->
+            <ScrollContainer
+                id="chatScroll"
+                width="100%"
+                vertical="true"
+                horizontal="false"
+                class="chatScrollArea">
+
+                <VBox class="chatMessagesContainer">
+
+                    <!-- Empty state — shown when no messages yet -->
+                    <VBox
+                        id="emptyStateBox"
+                        class="chatEmptyState"
+                        alignItems="Center"
+                        visible="{chat>/showEmptyState}">
+                        <core:Icon src="sap-icon://message-popup" class="chatEmptyIcon"/>
+                        <Title text="How can I help you travel?" level="H2" class="chatEmptyTitle"/>
+                        <Text text="Tell me where you'd like to go, and I'll find flights and hotels for you." class="chatEmptySubtitle"/>
+                    </VBox>
+
+                    <!-- Messages list -->
+                    <List
+                        id="messagesList"
+                        items="{chat>/messages}"
+                        showSeparators="None"
+                        class="chatMessagesList"
+                        visible="{= !${chat>/showEmptyState}}">
+
+                        <CustomListItem class="chatMessageItem">
+
+                            <HBox class="chatMessageRow {chat>role}" alignItems="Top">
+
+                                <!-- Avatar (for agent only) -->
+                                <Avatar
+                                    src="{= ${chat>role} === 'agent' ? 'sap-icon://message-popup' : '' }"
+                                    visible="{= ${chat>role} === 'agent'}"
+                                    backgroundColor="Accent6"
+                                    displaySize="S"
+                                    class="chatAvatar"/>
+
+                                <!-- Message bubble -->
+                                <VBox class="chatBubble {chat>role}">
+                                    <FormattedText
+                                        htmlText="{chat>html}"
+                                        class="chatBubbleText"/>
+                                </VBox>
+
+                            </HBox>
+
+                        </CustomListItem>
+                    </List>
+
+                    <!-- Typing indicator -->
+                    <HBox
+                        class="chatTypingRow"
+                        alignItems="Center"
+                        visible="{chat>/isThinking}">
+                        <Avatar
+                            src="sap-icon://message-popup"
+                            backgroundColor="Accent6"
+                            displaySize="S"
+                            class="chatAvatar"/>
+                        <HBox class="chatTypingBubble" alignItems="Center">
+                            <Text text="TravelAI is thinking" class="chatTypingText"/>
+                            <core:Icon src="sap-icon://refresh" class="chatTypingDot chatTypingDot1"/>
+                        </HBox>
+                    </HBox>
+
+                </VBox>
+
+            </ScrollContainer>
+
+            <!-- Input bar (sticky bottom) -->
+            <HBox class="chatInputBar" alignItems="Center">
+                <Input
+                    id="chatInput"
+                    placeholder="Ask me anything..."
+                    width="100%"
+                    submit=".onSendMessage"
+                    enabled="{= !${chat>/isThinking}}"
+                    class="chatInput"/>
+                <Button
+                    icon="sap-icon://paper-plane"
+                    type="Emphasized"
+                    press=".onSendMessage"
+                    enabled="{= !${chat>/isThinking}}"
+                    class="chatSendButton"/>
+            </HBox>
+
         </content>
     </Page>
+
 </mvc:View>

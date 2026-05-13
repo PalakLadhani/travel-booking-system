@@ -1,0 +1,100 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+
+    <Dialog
+        id="approvalDialog"
+        title="Confirm Your Booking"
+        contentWidth="500px"
+        class="approvalDialog">
+
+        <content>
+            <VBox class="approvalContent">
+
+                <!-- Type-aware icon + headline -->
+                <HBox alignItems="Center" class="approvalHeadline">
+                    <core:Icon
+                        src="{= ${/approvalData/action} === 'book_travel' ? 'sap-icon://flight' : 'sap-icon://hotel' }"
+                        class="approvalIcon"/>
+                    <VBox>
+                        <Title
+                            text="{= ${/approvalData/action} === 'book_travel' ? 'Confirm Travel Booking' : 'Confirm Hotel Booking' }"
+                            level="H3"
+                            class="approvalTitle"/>
+                        <Text
+                            text="Please review the details below before confirming."
+                            class="approvalSubtitle"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Booking summary card -->
+                <Panel class="approvalSummaryPanel" backgroundDesign="Solid">
+                    <content>
+                        <VBox class="approvalSummary">
+
+                            <!-- For travel bookings -->
+                            <VBox visible="{= ${/approvalData/action} === 'book_travel'}">
+                                <HBox class="approvalRow" justifyContent="SpaceBetween">
+                                    <Text text="Passenger" class="approvalLabel"/>
+                                    <Text text="{/approvalData/args/passenger_name}" class="approvalValue"/>
+                                </HBox>
+                                <HBox class="approvalRow" justifyContent="SpaceBetween">
+                                    <Text text="Travel Date" class="approvalLabel"/>
+                                    <Text text="{/approvalData/args/travel_date}" class="approvalValue"/>
+                                </HBox>
+                                <HBox class="approvalRow" justifyContent="SpaceBetween">
+                                    <Text text="Passengers" class="approvalLabel"/>
+                                    <Text text="{/approvalData/args/number_of_passengers}" class="approvalValue"/>
+                                </HBox>
+                            </VBox>
+
+                            <!-- For hotel bookings -->
+                            <VBox visible="{= ${/approvalData/action} === 'book_hotel'}">
+                                <HBox class="approvalRow" justifyContent="SpaceBetween">
+                                    <Text text="Guest" class="approvalLabel"/>
+                                    <Text text="{/approvalData/args/guest_name}" class="approvalValue"/>
+                                </HBox>
+                                <HBox class="approvalRow" justifyContent="SpaceBetween">
+                                    <Text text="Check-in" class="approvalLabel"/>
+                                    <Text text="{/approvalData/args/check_in}" class="approvalValue"/>
+                                </HBox>
+                                <HBox class="approvalRow" justifyContent="SpaceBetween">
+                                    <Text text="Check-out" class="approvalLabel"/>
+                                    <Text text="{/approvalData/args/check_out}" class="approvalValue"/>
+                                </HBox>
+                                <HBox class="approvalRow" justifyContent="SpaceBetween">
+                                    <Text text="Guests" class="approvalLabel"/>
+                                    <Text text="{/approvalData/args/number_of_guests}" class="approvalValue"/>
+                                </HBox>
+                            </VBox>
+
+                        </VBox>
+                    </content>
+                </Panel>
+
+                <MessageStrip
+                    text="By confirming, this booking will be created. You can review it later in My Bookings."
+                    type="Information"
+                    showIcon="true"
+                    class="approvalMessage"/>
+
+            </VBox>
+        </content>
+
+        <buttons>
+            <Button
+                text="Cancel"
+                press=".onApprovalCancel"
+                class="approvalCancelButton"/>
+            <Button
+                text="Confirm Booking"
+                type="Emphasized"
+                icon="sap-icon://accept"
+                press=".onApprovalConfirm"
+                class="approvalConfirmButton"/>
+        </buttons>
+
+    </Dialog>
+
+</core:FragmentDefinition>

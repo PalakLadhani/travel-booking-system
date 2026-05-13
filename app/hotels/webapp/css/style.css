@@ -600,3 +600,345 @@
     overflow: visible !important;
     font-size: 1.3rem !important;
 }
+/* ============================================================
+   CHAT PAGE
+   ============================================================ */
+
+.chatPage .sapMPage > section {
+    padding: 0 !important;
+    background: linear-gradient(180deg, #fafbfc 0%, #f1f5f9 100%) !important;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* ---- Top bar ---- */
+.chatTopBar {
+    width: 100%;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.75rem 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    flex-shrink: 0;
+}
+
+.chatTopLeft {
+    gap: 0.5rem;
+}
+
+.chatBackButton {
+    color: #64748b !important;
+}
+
+.chatTitleBox {
+    gap: 0.1rem;
+}
+
+.chatHeaderTitle .sapMTitle,
+.chatHeaderTitle {
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+}
+
+.chatHeaderSubtitle {
+    color: #64748b !important;
+    font-size: 0.8rem !important;
+}
+
+.chatBookingsButton {
+    color: #ea580c !important;
+    font-weight: 600 !important;
+}
+
+/* ---- Scroll area ---- */
+.chatScrollArea {
+    flex: 1;
+    width: 100%;
+    overflow-y: auto !important;
+}
+
+.chatMessagesContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 1rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ---- Empty state ---- */
+.chatEmptyState {
+    padding: 4rem 1rem;
+    gap: 1rem;
+}
+
+.chatEmptyIcon {
+    font-size: 4rem !important;
+    color: #fb923c !important;
+    margin-bottom: 1rem;
+}
+
+.chatEmptyTitle .sapMTitle,
+.chatEmptyTitle {
+    color: #0f172a !important;
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+}
+
+.chatEmptySubtitle {
+    color: #64748b !important;
+    font-size: 1.05rem !important;
+    text-align: center;
+    max-width: 480px;
+}
+
+/* ---- Messages list ---- */
+.chatMessagesList .sapMListUl {
+    background: transparent !important;
+}
+
+.chatMessageItem {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.chatMessageItem .sapMLIB-CTX,
+.chatMessageItem .sapMCLI {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.chatMessageRow {
+    width: 100%;
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+}
+
+/* User messages — right aligned */
+.chatMessageRow.user {
+    justify-content: flex-end;
+}
+
+.chatAvatar {
+    flex-shrink: 0;
+}
+
+/* ---- Bubbles ---- */
+.chatBubble {
+    max-width: 75%;
+    padding: 0.85rem 1.1rem;
+    border-radius: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.chatBubble.user {
+    background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
+    color: white;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.25);
+}
+
+.chatBubble.agent {
+    background: white;
+    color: #0f172a;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    border: 1px solid #f1f5f9;
+}
+
+.chatBubbleText {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+}
+
+.chatBubble.user .chatBubbleText {
+    color: white !important;
+}
+
+.chatBubble.user .chatBubbleText strong {
+    color: white !important;
+}
+
+.chatBubble.agent .chatBubbleText {
+    color: #0f172a !important;
+}
+
+.chatBubble.agent .chatBubbleText strong {
+    color: #ea580c !important;
+}
+
+/* ---- Typing indicator ---- */
+.chatTypingRow {
+    margin: 0.5rem 0 1rem 0;
+    gap: 0.5rem;
+}
+
+.chatTypingBubble {
+    background: white;
+    padding: 0.85rem 1.1rem;
+    border-radius: 16px;
+    border-bottom-left-radius: 4px;
+    border: 1px solid #f1f5f9;
+    gap: 0.5rem;
+}
+
+.chatTypingText {
+    color: #64748b !important;
+    font-style: italic;
+    font-size: 0.9rem !important;
+}
+
+.chatTypingDot {
+    color: #fb923c !important;
+    font-size: 1rem !important;
+    animation: chatTypingPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes chatTypingPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.15); }
+}
+
+/* ---- Input bar (sticky bottom) ---- */
+.chatInputBar {
+    width: 100%;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+    padding: 0.75rem 1.25rem;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+}
+
+.chatInput {
+    flex: 1;
+}
+
+.chatInput input {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 24px !important;
+    padding: 0.75rem 1.25rem !important;
+    font-size: 0.95rem !important;
+    background: #fafbfc !important;
+}
+
+.chatInput input:focus {
+    border-color: #ea580c !important;
+    background: white !important;
+}
+
+.chatSendButton {
+    background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%) !important;
+    border: none !important;
+    border-radius: 24px !important;
+    height: 2.75rem !important;
+    width: 2.75rem !important;
+    color: white !important;
+    flex-shrink: 0;
+}
+
+.chatSendButton:hover {
+    transform: scale(1.05);
+}
+
+.chatSendButton[disabled] {
+    opacity: 0.5;
+}
+
+/* ============================================================
+   APPROVAL DIALOG
+   ============================================================ */
+
+.approvalDialog .sapMDialogScrollCont {
+    padding: 0 !important;
+}
+
+.approvalContent {
+    padding: 1.5rem;
+    gap: 1.25rem;
+}
+
+.approvalHeadline {
+    gap: 1rem;
+}
+
+.approvalIcon {
+    font-size: 2.5rem !important;
+    color: #ea580c !important;
+    flex-shrink: 0;
+}
+
+.approvalTitle .sapMTitle,
+.approvalTitle {
+    color: #0f172a !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+}
+
+.approvalSubtitle {
+    color: #64748b !important;
+    font-size: 0.9rem !important;
+}
+
+.approvalSummaryPanel {
+    background: #fafbfc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 1.25rem !important;
+}
+
+.approvalSummaryPanel .sapMPanelContent {
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+.approvalSummary {
+    gap: 0.75rem;
+}
+
+.approvalRow {
+    width: 100%;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.approvalRow:last-child {
+    border-bottom: none;
+}
+
+.approvalLabel {
+    color: #64748b !important;
+    font-size: 0.9rem !important;
+}
+
+.approvalValue {
+    color: #0f172a !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+}
+
+.approvalMessage {
+    margin-top: 0.5rem;
+}
+
+.approvalCancelButton {
+    color: #64748b !important;
+}
+
+.approvalConfirmButton {
+    background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%) !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 600 !important;
+    padding: 0 1.5rem !important;
+    height: 2.5rem !important;
+}
+
+.approvalConfirmButton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(234, 88, 12, 0.35);
+}
